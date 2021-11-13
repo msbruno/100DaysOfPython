@@ -9,14 +9,17 @@ async def sequence_saying():
     await say('world', 3)
     print("starting...")
     
-    
-async def main():
-    await sequence_saying()
+async def parallel_saying():
     await asyncio.gather(
         say("Will be the last print", 3),
         say("Will be the second print", 2),
         say("Will be the first print", 1),
     )
+    
+async def main():
+    await sequence_saying()
+    await parallel_saying()
+   
 asyncio.run(main())
 
 # expected output:
@@ -26,5 +29,3 @@ asyncio.run(main())
 # Will be the first print
 # Will be the second print
 # Will be the last print
-
-
