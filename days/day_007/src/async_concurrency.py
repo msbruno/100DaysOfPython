@@ -12,7 +12,7 @@ async def sequence_saying():
     
 async def main():
     await sequence_saying()
-    L = await asyncio.gather(
+    await asyncio.gather(
         say("Will be the last print", 3),
         say("Will be the second print", 2),
         say("Will be the first print", 1),
