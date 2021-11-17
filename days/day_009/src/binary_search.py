@@ -4,16 +4,16 @@ def binary_search(array:list, element_to_find:int):
     count = 0
     
     while start < end:
-        middle_index = int((start + end)/ 2)
-        selected = array[middle_index]
+        selected_index = int((start + end)/ 2)
+        selected = array[selected_index]
         count += 1
 
         if selected > element_to_find:
-            end = selected
+            end = selected_index
         elif selected < element_to_find:
-            start = selected
+            start = selected_index
         elif selected == element_to_find:
-            return middle_index, count
+            return selected_index, count
     return None, count
 
 array = [1,2,3,4,5,6,7,8,9,10]
@@ -27,4 +27,4 @@ assert 1 == leaps
 
 index, leaps =  binary_search(array, 9)
 assert 8 == index
-assert 3 == leaps    
+assert 4 == leaps    
