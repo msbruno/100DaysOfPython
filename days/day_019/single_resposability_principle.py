@@ -14,7 +14,7 @@ from functools import reduce
 
 class Order:
   
-  ''' Order '''
+  ''' Order is not following Single responsability principle. '''
 
     def __init__(self):
         self.__itens:list = []
