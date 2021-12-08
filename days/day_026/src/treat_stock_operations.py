@@ -62,7 +62,7 @@ def read_data(path)-> pd.DataFrame:
     data = pd.read_excel(path)
     return data
 
-path = r"C:\Users\Silvas\Downloads\movimentacao-2021-12-07-17-12-35 (1).xlsx"
+path = r"data.xlsx"
 data = read_data(path)
 treater = TreatDataSource()
 treater.ini(data)
