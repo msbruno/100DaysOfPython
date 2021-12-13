@@ -22,11 +22,17 @@ is_on = {
     'G': False,
     }
 
+
 @dataclass
 class Result:
     node: float
     visited_nodes_count: int
+
+class ElementNotFoundException(Exception):
+    def __init__(self) -> None:
+        super().__init__("No element ON was found!")
   
+
 def find_is_on_breath_first(graph:dict, is_on:dict):
     queue = deque(graph['root'])
     count = 0
@@ -38,7 +44,7 @@ def find_is_on_breath_first(graph:dict, is_on:dict):
         if is_on[element]:
             return Result(element, count)
         queue += graph[element]
-    raise Exception("No element ON was found!")
+    raise ElementNotFoundException()
 
 result = find_is_on_breath_first(graph, is_on)
 assert result == Result('D', 4)
@@ -47,3 +53,10 @@ is_on['D'] = False
 is_on['G'] = True
 result = find_is_on_breath_first(graph, is_on)
 assert result == Result('G', 7)
+
+is_on['G'] = False
+try:
+    result = find_is_on_breath_first(graph, is_on)
+    raise Exception("It was expected an exception in program.")
+except Exception as e:
+    assert type(e) is ElementNotFoundException 
