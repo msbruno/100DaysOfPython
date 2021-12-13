@@ -1,0 +1,49 @@
+from collections import deque
+from dataclasses import dataclass
+
+graph = {
+    'root': 'A',
+    'A' : ['B', 'C'],
+    'B' : ['D'],
+    'C' : ['E'],
+    'D' : [],
+    'E' : ['F', 'G'],
+    'F' : [],
+    'G' : []
+} 
+
+is_on = {
+    'A':False,
+    'B': False,
+    'C': False,
+    'D': True,
+    'E': False,
+    'F': False,
+    'G': False,
+    }
+
+@dataclass
+class Result:
+    node: float
+    visited_nodes_count: int
+  
+def find_is_on_breath_first(graph:dict, is_on:dict):
+    queue = deque(graph['root'])
+    count = 0
+
+    while len(queue) > 0:
+        element = queue.popleft()
+        count += 1
+
+        if is_on[element]:
+            return Result(element, count)
+        queue += graph[element]
+    raise Exception("No element ON was found!")
+
+result = find_is_on_breath_first(graph, is_on)
+assert result == Result('D', 4)
+
+is_on['D'] = False
+is_on['G'] = True
+result = find_is_on_breath_first(graph, is_on)
+assert result == Result('G', 7)
