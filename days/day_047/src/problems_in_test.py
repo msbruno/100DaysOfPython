@@ -1,3 +1,13 @@
+class AccountService:
+
+    def __init__(self, registration_function) -> None:
+        self.__registration_function = registration_function
+
+    def register(self, name:str):
+        result = self.__registration_function(name)
+        #logic
+        return result
+
 '''
     STUB
     
